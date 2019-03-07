@@ -84,7 +84,7 @@ yum install iproute ftp bind-utils net-tools wget -y
 
 确保当前模式是 NAT 模式
 
-![](imgs\9152.png)
+![](/imgs/9152.png)
 
 菜单 --> 编辑 --> 虚拟网络编辑器 --> 更改设置
 

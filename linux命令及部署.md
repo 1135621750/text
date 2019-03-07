@@ -84,28 +84,28 @@ yum install iproute ftp bind-utils net-tools wget -y
 
 确保当前模式是 NAT 模式
 
-![](C:\Users\Bai\Desktop\blog\imgs\9152.png)
+![](imgs\9152.png)
 
 菜单 --> 编辑 --> 虚拟网络编辑器 --> 更改设置
 
-![](C:\Users\Bai\Desktop\blog\imgs\9153.png)
+![](imgs\9153.png)
 
 1. 算中 VMnet8
 2. 取消勾选 使用本地 DHCP 服务将 IP 地址分配给虚拟机
 3. 设置子网 ip: 192.168.2.0
 4. 点击 NAT 设置
 
-![](C:\Users\Bai\Desktop\blog\imgs\9154.png)
+![](imgs\9154.png)
 
 修改 IP 地址为 :192.168.2.1
 
-![](C:\Users\Bai\Desktop\blog\imgs\9155.png)
+![](imgs\9155.png)
 
 点击确定
 
 win10 修改VMnet8的ip地址为：192.168.2.3
 
-![](C:\Users\Bai\Desktop\blog\imgs\ip-update.gif)
+![](imgs\ip-update.gif)
 
 在SentOS中设置
 
@@ -114,7 +114,7 @@ cd /etc/sysconfig/network-scripts/
 ls
 ```
 
-![](C:\Users\Bai\Desktop\blog\imgs\9161.png)
+![](imgs\9161.png)
 
 ``` shell
 使用如下命令编辑此文件，linux版本不同后缀的33会不同，选择前面正确的文件即可
@@ -141,7 +141,7 @@ ping www.baidu.com
 #静态ip修改完毕，可以使用ssh链接
 ```
 
-![](C:\Users\Bai\Desktop\blog\imgs\9162.png)
+![](imgs\9162.png)
 
 ### Linux 命令记录及使用
 

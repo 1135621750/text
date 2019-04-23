@@ -407,3 +407,70 @@ public class IdWorker {
 }
 ```
 
+#### 消息转换器
+
+```java
+@Configuration
+public class WebConfigurer extends WebMvcConfigurationSupport {
+
+   /**
+     * 消息转换器(对前端友好，不需要判断null值)
+     * 忽略单个属性使用@JSONField(serialize = false)
+    * 使用序列化com.alibaba.fastjson
+    * 如果序列化不在setSerializerFeatures中配置对应的类型为空属性隐藏
+    * @JsonInclude(JsonInclude.Include.NON_NULL) 标注类上可以直接序列化为null的值不显示
+     * @param converters
+     */
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
+        ArrayList<MediaType> mediaTypes = Lists.newArrayList(MediaType.APPLICATION_JSON
+                , MediaType.APPLICATION_JSON_UTF8
+                , MediaType.APPLICATION_ATOM_XML
+                , MediaType.APPLICATION_FORM_URLENCODED
+                , MediaType.APPLICATION_FORM_URLENCODED
+                , MediaType.APPLICATION_OCTET_STREAM
+                , MediaType.APPLICATION_PDF
+                , MediaType.APPLICATION_RSS_XML
+                , MediaType.APPLICATION_XHTML_XML
+                , MediaType.APPLICATION_XHTML_XML
+                , MediaType.APPLICATION_XML
+                , MediaType.IMAGE_GIF
+                , MediaType.IMAGE_JPEG
+                , MediaType.IMAGE_PNG
+                , MediaType.TEXT_EVENT_STREAM
+                ,MediaType.TEXT_HTML
+                , MediaType.TEXT_MARKDOWN
+                , MediaType.TEXT_MARKDOWN
+                , MediaType.TEXT_PLAIN
+                , MediaType.TEXT_XML
+                , MediaType.APPLICATION_JSON_UTF8);
+        converter.setSupportedMediaTypes(mediaTypes);
+        FastJsonConfig config = new FastJsonConfig();
+        config.setSerializerFeatures(
+                // Number null -> 0
+                SerializerFeature.WriteNullNumberAsZero,
+                //List字段如果为null,输出为[],而非null
+                SerializerFeature.WriteNullListAsEmpty,
+                //字符类型字段如果为null,输出为"",而非null
+                SerializerFeature.WriteNullStringAsEmpty,
+                //Boolean字段如果为null,输出为false,而非null
+                SerializerFeature.WriteNullBooleanAsFalse,
+                //是否输出值为null的字段,默认为false
+//            SerializerFeature.WriteMapNullValue,
+                //禁止循环引用,消除对同一对象循环引用的问题，默认为false（如果不配置有可能会进入死循环）
+                SerializerFeature.DisableCircularReferenceDetect
+        );
+        converter.setFastJsonConfig(config);
+        converter.setDefaultCharset(Charset.forName("UTF-8"));
+        converters.add(converter);
+    }
+
+
+
+
+
+
+}
+```
+
